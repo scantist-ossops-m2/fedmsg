@@ -57,7 +57,7 @@ class FedmsgConsumer(moksha.hub.api.consumer.Consumer):
           in order for the consumer to be activated.
     """
 
-    validate_signatures = None
+    validate_signatures = False
     config_key = None
 
     def __init__(self, hub):
@@ -81,7 +81,7 @@ class FedmsgConsumer(moksha.hub.api.consumer.Consumer):
         # This call "completes" registration of this consumer with the hub.
         super(FedmsgConsumer, self).__init__(hub)
 
-        if self.validate_signatures is None:
+        if self.validate_signatures:
             self.validate_signatures = self.hub.config['validate_signatures']
 
     def validate(self, message):
