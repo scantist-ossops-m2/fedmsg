@@ -65,7 +65,7 @@ class FedmsgConsumer(moksha.hub.api.consumer.Consumer):
           in order for the consumer to be activated.
     """
 
-    validate_signatures = None
+    validate_signatures = False
     config_key = None
 
     def __init__(self, hub):
@@ -93,7 +93,7 @@ class FedmsgConsumer(moksha.hub.api.consumer.Consumer):
         # Now, re-get our logger to override the one moksha assigns us.
         self.log = logging.getLogger("fedmsg")
 
-        if self.validate_signatures is None:
+        if self.validate_signatures:
             self.validate_signatures = self.hub.config['validate_signatures']
         if hasattr(self, "replay_name"):
             self.name_to_seq_id = {}
